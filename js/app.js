@@ -12,25 +12,30 @@ $(document).ready(function(){
   		$(".overlay").fadeOut(1000);
   	});
 
-   $('#userGuess').keydown(function(e){
+  // Pressing Enter Key
+  $('#userGuess').keydown(function(e){
     if (e.keyCode === 13){
       userCompare();
       appendGuess();
     }
   });
-  var random = Math.floor((Math.random() *100) +1);
-  function changeFeedback(feedback){
-    $("#feedback").text(feedback);
+
+  // Creating a new game
+  function newGame(){
+    console.log("new game!");
+    $("#guessList li").remove();
+    $("#count").text("0");
+    $("#feedback").text("Make your Guess!");
+    $("#userGuess").val("");
   }
-  function appendGuess(){
-    var input=$("#userGuess").val();
-    if (input !== "") {
-      $("#guessList").append("<li> "+input+" </li>");
-      $("#userGuess").val("");
-    }
-  }
+  $(".new").click(function(){
+    newGame();
+  });
+
+  // Compares User Input To The Random Number Generated
   function userCompare(){
     var input=$("#userGuess").val();
+    var random = Math.floor(Math.random() *101);
     console.log(random);
     console.log(input);
     var feedback = ["You Win!", "Very Hot", "Hot", "Cold", "Cold as Planet Hoth"]
@@ -47,10 +52,20 @@ $(document).ready(function(){
       changeFeedback(feedback[4]);
     }
   }
+
+  // Gives the user feedback depending on how close or far their guess is
   function changeFeedback(feedback){
     $("#feedback").text(feedback);
   }
+
+  // List Guesses and Count Guesses
+  function guessCounter(){
+    var i = parseInt("0", 10);
+    $("#count").text(++i);
+    console.log("increment");
+  }
   function appendGuess(){
+    guessCounter();
     var input=$("#userGuess").val();
     if (input !== "") {
       $("#guessList").append("<li> "+input+" </li>");

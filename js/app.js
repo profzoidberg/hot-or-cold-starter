@@ -11,9 +11,8 @@ $(document).ready(function(){
       $(".overlay").fadeOut(1000);
     });
 
-  var random = Math.floor(Math.random() * 101);
+  var random = Math.floor((Math.random() * 100) + 1);
 
-  // Pressing Enter Key
   $("#guessButton").click(function(){
       userCompare();
       appendGuess();
@@ -26,7 +25,7 @@ $(document).ready(function(){
     $("#feedback").text("Make your Guess!");
     $("#userGuess").val("");
     $("#count").text(i = 0);
-    random = Math.floor(Math.random() * 101);
+    random = Math.floor((Math.random() * 100) + 1);
     console.log(random);
   }
   $(".new").click(function(){
@@ -67,9 +66,8 @@ $(document).ready(function(){
   function appendGuess(){
     guessCounter();
     var input=$("#userGuess").val();
-    if (input>= 101) {
+    if (input >= 101 || input == 0) {
       alert("Pick a number 1-100!");
-      return;
     } else if (isNaN(parseInt(input))) {
       alert("Please enter a number!");
     } else if (input !== "") {

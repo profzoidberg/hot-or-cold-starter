@@ -62,19 +62,17 @@ $(document).ready(function(){
   }
 
   // List Guesses and Count Guesses
-  var i = parseInt("0", 10);
+  var i = 0;
   function guessCounter(){
     $("#count").text(++i);
   }
   function appendGuess(){
     guessCounter();
     var input = parseInt($("#userGuess").val());
-    if ($.isNumeric(input) === false){
-      console.log(input);
-      console.log("remove");
-    } else if (input !== "") {
+    if (input !== "") {
       $("#guessList").append("<li> "+input+" </li>");
       $("#userGuess").val("");
-    }
+    } else if (input === "")
+      changeFeedback(feedback[5]);
   }
 });

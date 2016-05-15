@@ -39,11 +39,9 @@ $(document).ready(function(){
     var input = $("#userGuess").val();
     console.log(input);
     console.log(random);
-    var feedback = ["You Win!", "Very Hot", "Hot", "Cold", "Cold as Planet Hoth"]
+    var feedback = ["You Win! Click New Game To Play Again", "Very Hot", "Hot", "Cold", "Cold as Planet Hoth"]
     if (input == random) {
       changeFeedback(feedback[0]);
-      alert("You Won! Play Again?");
-      newGame();
     } else if (random - 5 <= input && input <= random + 5) {
       changeFeedback(feedback[1]);
     } else if (random - 15 <= input && input <= random + 15) {
@@ -71,6 +69,7 @@ $(document).ready(function(){
     var input=$("#userGuess").val();
     if (input>= 101) {
       alert("Pick a number 1-100!");
+      return;
     } else if (isNaN(parseInt(input))) {
       alert("Please enter a number!");
     } else if (input !== "") {

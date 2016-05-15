@@ -15,16 +15,16 @@ $(document).ready(function(){
   var random = Math.floor(Math.random() *101);
 
   // Pressing Enter Key
-  $("#userGuess").keydown(function(e){
-    if (e.keyCode === 13){
-      userCompare();
-      appendGuess();
-    }
-  });
-  // $("#guessButton").click(function(){
+  // $("#userGuess").keydown(function(e){
+  //   if (e.keyCode === 13){
   //     userCompare();
   //     appendGuess();
+  //   }
   // });
+  $("#guessButton").click(function(){
+    userCompare();
+    appendGuess();
+  })
 
   // Creating a new game
   function newGame(){
@@ -33,7 +33,7 @@ $(document).ready(function(){
     $("#feedback").text("Make your Guess!");
     $("#userGuess").val("");
     $("#count").text(i=0);
-    random = Math.floor(Math.random() *101);
+    random = Math.floor(Math.random() * d101);
     console.log(random);
   }
   $(".new").click(function(){
@@ -47,7 +47,7 @@ $(document).ready(function(){
     console.log(input);
     console.log(random);
     var feedback = ["You Win!", "Very Hot", "Hot", "Cold", "Cold as Planet Hoth"]
-    if (input == random) {
+    if (input === random) {
       changeFeedback(feedback[0]);
       alert("You Won! Play Again?");
     } else if (random - 5 <= input && input <= random + 5) {
@@ -74,8 +74,8 @@ $(document).ready(function(){
   }
   function appendGuess(){
     guessCounter();
-    var input=$("#userGuess").val();
-    if (input>= 101) {
+    var input = $("#userGuess").val();
+    if (input >= 101) {
       alert("Pick a number 1-100!");
     } else if (isNaN(parseInt(input))) {
       alert("Please enter a number!");

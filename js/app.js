@@ -35,12 +35,16 @@ $(document).ready(function(){
   // Compares User Input To The Random Number Generated
  
   function userCompare(){
-    var input = $("#userGuess").val();
+    var input = parseInt($("#userGuess").val());
     console.log(input);
     console.log(random);
-    var feedback = ["You Win! Click New Game To Play Again", "Very Hot", "Hot", "Cold", "Cold as Planet Hoth"]
+    var feedback = ["You Win! Click New Game To Play Again", "Very Hot", "Hot", "Cold", "Cold as Planet Hoth", "Please enter a number!", "Pick a number 1-100!"]
     if (input == random) {
       changeFeedback(feedback[0]);
+    } else if (isNaN(input)) {
+      changeFeedback(feedback[5]);
+    } else if (input >= 101 || input == 0) {
+      changeFeedback(feedback[6]);
     } else if (random - 5 <= input && input <= random + 5) {
       changeFeedback(feedback[1]);
     } else if (random - 15 <= input && input <= random + 15) {
@@ -65,11 +69,10 @@ $(document).ready(function(){
   }
   function appendGuess(){
     guessCounter();
-    var input=$("#userGuess").val();
-    if (input >= 101 || input == 0) {
-      alert("Pick a number 1-100!");
-    } else if (isNaN(parseInt(input))) {
-      alert("Please enter a number!");
+    var input = parseInt($("#userGuess").val());
+     // if (isNaN(input)) {
+     //  $("#guessList").closest("li").remove();
+     //  console.log("remove NaN");
     } else if (input !== "") {
       $("#guessList").append("<li> "+input+" </li>");
       $("#userGuess").val("");

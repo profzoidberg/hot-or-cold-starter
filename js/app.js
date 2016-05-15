@@ -70,10 +70,7 @@ $(document).ready(function(){
   function appendGuess(){
     guessCounter();
     var input = parseInt($("#userGuess").val());
-     // if (isNaN(input)) {
-     //  $("#guessList").closest("li").remove();
-     //  console.log("remove NaN");
-    } else if (input !== "") {
+      if (input !== "") {
       $("#guessList").append("<li> "+input+" </li>");
       $("#userGuess").val("");
     }

@@ -41,8 +41,6 @@ $(document).ready(function(){
     var feedback = ["You Win! Click New Game To Play Again", "Very Hot", "Hot", "Cold", "Cold as Planet Hoth", "Please enter a number!", "Pick a number 1-100!"]
     if (input == random) {
       changeFeedback(feedback[0]);
-    } else if (isNaN(input)) {
-      changeFeedback(feedback[5]);
     } else if (input >= 101 || input == 0) {
       changeFeedback(feedback[6]);
     } else if (random - 5 <= input && input <= random + 5) {
@@ -51,6 +49,8 @@ $(document).ready(function(){
       changeFeedback(feedback[2]);
     } else if (random - 25 <= input && input <= random + 25) {
       changeFeedback(feedback[3]);
+    } else if ($.isNumeric(input) === false) {
+      changeFeedback(feedback[5]);
     } else {
       changeFeedback(feedback[4]);
     }
@@ -65,12 +65,14 @@ $(document).ready(function(){
   var i = parseInt("0", 10);
   function guessCounter(){
     $("#count").text(++i);
-    console.log("increment");
   }
   function appendGuess(){
     guessCounter();
     var input = parseInt($("#userGuess").val());
-      if (input !== "") {
+    if ($.isNumeric(input) === false){
+      console.log(input);
+      console.log("remove");
+    } else if (input !== "") {
       $("#guessList").append("<li> "+input+" </li>");
       $("#userGuess").val("");
     }

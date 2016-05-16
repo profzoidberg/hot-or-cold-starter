@@ -26,22 +26,20 @@ $(document).ready(function(){
     $("#userGuess").val("");
     $("#count").text(i = 0);
     random = Math.floor((Math.random() * 100) + 1);
-    console.log(random);
   }
   $(".new").click(function(){
     newGame();
   })
 
   // Compares User Input To The Random Number Generated
- 
   function userCompare(){
     var input = parseInt($("#userGuess").val());
-    console.log(input);
-    console.log(random);
     var feedback = ["You Win! Click New Game To Play Again", "Very Hot", "Hot", "Cold", "Cold as Planet Hoth", "Please enter a number!", "Pick a number 1-100!"]
     if (input == random) {
       changeFeedback(feedback[0]);
     } else if (input >= 101 || input == 0) {
+      $("#userGuess").val("");
+      $("#count").text(--i);
       changeFeedback(feedback[6]);
     } else if (random - 5 <= input && input <= random + 5) {
       changeFeedback(feedback[1]);

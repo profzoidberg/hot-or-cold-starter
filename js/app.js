@@ -49,7 +49,7 @@ $(document).ready(function(){
       changeFeedback(feedback[2]);
     } else if (random - 25 <= input && input <= random + 25) {
       changeFeedback(feedback[3]);
-    } else if ($.isNumeric(input) === false) {
+    } else if (isNaN(input)) {
       changeFeedback(feedback[5]);
     } else {
       changeFeedback(feedback[4]);
@@ -69,10 +69,11 @@ $(document).ready(function(){
   function appendGuess(){
     guessCounter();
     var input = parseInt($("#userGuess").val());
-    if (input !== "") {
+    if (!isNaN(input)) {
       $("#guessList").append("<li> "+input+" </li>");
       $("#userGuess").val("");
-    } else if (input === "")
+    } else if (input === "") {
       changeFeedback(feedback[5]);
+    }
   }
 });

@@ -51,6 +51,8 @@ $(document).ready(function(){
       changeFeedback(feedback[3]);
     } else if (isNaN(input)) {
       changeFeedback(feedback[5]);
+      $("#userGuess").val("");
+      $("#count").text(--i);
     } else {
       changeFeedback(feedback[4]);
     }
@@ -69,11 +71,9 @@ $(document).ready(function(){
   function appendGuess(){
     guessCounter();
     var input = parseInt($("#userGuess").val());
-    if (!isNaN(input)) {
+    if (isNaN(input) === false) {
       $("#guessList").append("<li> "+input+" </li>");
       $("#userGuess").val("");
-    } else if (input === "") {
-      changeFeedback(feedback[5]);
     }
   }
 });
